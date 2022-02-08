@@ -1,6 +1,7 @@
 package Repository;
 
 import Model.Cidade;
+import Model.Cliente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -27,6 +28,15 @@ public class CidadeRepository {
         Query query = manager.createQuery("SELECT c FROM Cidade c WHERE c.id = " + id);
         Cidade c = (Cidade) query.getSingleResult();
 
+        return c;
+    }
+
+    public Cidade update(Cidade c) {
+        if(c == null){
+            System.out.println("Não foi posível encontrar uma Cidade com esse ID.");
+            return null;
+        }
+        c = this.manager.merge(c);
         return c;
     }
 

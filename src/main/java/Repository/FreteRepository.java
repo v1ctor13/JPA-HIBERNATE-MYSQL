@@ -1,5 +1,6 @@
 package Repository;
 
+import Model.Cliente;
 import Model.Frete;
 
 import javax.persistence.EntityManager;
@@ -27,6 +28,15 @@ public class FreteRepository {
         Query query = manager.createQuery("SELECT f FROM Frete f WHERE f.id = " + id);
         Frete f = (Frete) query.getSingleResult();
 
+        return f;
+    }
+
+    public Frete update(Frete f) {
+        if(f == null){
+            System.out.println("Não foi posível encontrar um frete com esse ID.");
+            return null;
+        }
+        f = this.manager.merge(f);
         return f;
     }
 

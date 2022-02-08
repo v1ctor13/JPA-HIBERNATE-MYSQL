@@ -30,6 +30,15 @@ public class ClienteRepository {
         return c;
     }
 
+    public Cliente update(Cliente c) {
+        if(c == null){
+            System.out.println("Não foi posível encontrar um cliente com esse ID.");
+            return null;
+        }
+        c = this.manager.merge(c);
+        return c;
+    }
+
     public EntityManager getManager(){
         return this.manager;
     }
