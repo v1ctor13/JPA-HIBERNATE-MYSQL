@@ -12,7 +12,7 @@ public class AtualizacaoCidadeService {
         this.manager = manager;
     }
 
-    public Cidade atualizarCliente(Cidade cidade) {
+    public Cidade atualizarCidade(Cidade cidade) {
         CidadeRepository repository = new CidadeRepository(manager);
         return repository.update(cidade);
     }

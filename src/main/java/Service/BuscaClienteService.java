@@ -4,6 +4,8 @@ import Model.Cliente;
 import Repository.ClienteRepository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class BuscaClienteService {
 
@@ -17,6 +19,20 @@ public class BuscaClienteService {
         ClienteRepository repository = new ClienteRepository(manager);
 
         return repository.read(id);
+    }
+
+    //teste
+    public static void main(String[] args){
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("lab4");
+        EntityManager manager = factory.createEntityManager();
+        BuscaClienteService service = new BuscaClienteService(manager);
+
+        Cliente c = service.buscarClientePorId(10);
+
+        System.out.println("nome: " + c.getNome());
+
+        manager.close();
+        factory.close();
     }
 
 }
